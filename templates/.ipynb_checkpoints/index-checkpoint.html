@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gender Detection AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="card">
+  <h1>Gender Detection AI</h1>
+  <p class="subtitle">Face Detection • PCA • Machine Learning</p>
+
+  <form method="POST" enctype="multipart/form-data">
+    <label class="upload-box">
+      <input type="file" name="image" accept="image/*" required />
+      <span>📤 Click or Drop Image</span>
+    </label>
+
+    <button type="submit">Analyze</button>
+  </form>
+
+  {% if image %}
+    <img class="preview"
+         src="{{ url_for('static', filename='uploads/' + image) }}">
+  {% endif %}
+
+  {% if result %}
+    <div class="result success">
+      <h2>{{ result }}</h2>
+      <span>Confidence: {{ confidence }}</span>
+    </div>
+  {% endif %}
+
+  {% if error %}
+    <div class="result error">
+      {{ error }}
+    </div>
+  {% endif %}
+</div>
+
+</body>
+</html>
